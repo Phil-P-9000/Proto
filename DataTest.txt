@@ -1,0 +1,24 @@
+{
+  "nodes": [
+    { "id": 1, "name": "EAN Sloover", "level":1 },
+    {"id": 2, "name": "SMAK DK Ltd", "level":2 },
+    {"id": 3, "name": "SMAK OS Ltd", "level":2 },
+    {"id": 4, "name": "SMAK GC Ltd", "level":2 },
+    {"id": 5, "name": "RIJAK Investment Trust", "level":2 },
+    {"id": 6, "name": "V2AK Ltd", "level":3 },
+    {"id": 7, "name": "SCI de Gorge", "level":2 },
+    {"id": 8, "name": "Private WC Ltd.", "level":3 },
+    {"id": 9, "name": "Rickard Properties", "level":2 }
+  ],
+  "links": [
+    {"source": 2, "target": 1, "value": 1 },
+    {"source": 3, "target": 1, "value": 1  },
+    {"source": 4, "target": 1, "value": 1  },
+    {"source": 5, "target": 1, "value": 1  },
+    {"source": 6, "target": 5, "value": 1  },
+    {"source": 7, "target": 1, "value": 1  },
+    {"source": 8, "target": 2 , "value": 1 },
+    {"source": 9, "target": 6, "value": 0.65  },
+    {"source": 9, "target": 8, "value": 0.35  }
+  ]
+}
