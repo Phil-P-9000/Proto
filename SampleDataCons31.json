@@ -1,0 +1,29 @@
+{"nodes":[
+{"name":"EAN Sloover","fullname":"EAN Sloover","type":"Person","group":1,"position":1, "xalign":2, "displaysize":1,"holdingtype":"N/A","jurisdiction":"Switzerland","riskrating":"High","riskcode":"RC8J","AML":"Yes","icon":"https://github.com/Phil-P-9000/Proto/blob/master/Person.PNG?raw=true"
+,"item1":"Owns:", "item2":"RJAC Trust - 100%","item3":"SMAK OS - 100%", "item4":"SCI de Gorge - 100%", "item5":"SMAK GC - 100%", "item6": "SMAK DK - 100%", "item7": "Gold Bars - 20 units", "item8": "Currency - USD $1.5M", "item9":"Loan to M.Brown - USD $200K", "item10":"Ferrari California - 1 unit", "item11":"Google (ord) - 3,000 Shares"}
+,{"name":"SMAK DK","fullname":"SMAK DK Ltd","type":"Company","group":2,"position":8, "xalign":10, "displaysize":1,"holdingtype":"Beneficial owner","jurisdiction":"Switzerland","riskrating":"Low","riskcode":"N/A","AML":"Yes","icon":"https://github.com/Phil-P-9000/Proto/blob/master/InvestmentCompany.PNG?raw=true"}
+,{"name":"SMAK OS","fullname":"SMAK OS Ltd","type":"Company","group":2,"position":4, "xalign":10, "displaysize":1,"holdingtype":"Beneficial owner","jurisdiction":"Switzerland","riskrating":"Low","riskcode":"N/A","AML":"Yes","icon":"https://github.com/Phil-P-9000/Proto/blob/master/InvestmentCompany.PNG?raw=true"}
+,{"name":"SMAK GC","fullname":"SMAK GC Ltd","type":"Company","group":2,"position":6, "xalign":10, "displaysize":1,"holdingtype":"Beneficial owner","jurisdiction":"Switzerland","riskrating":"Low","riskcode":"N/A","AML":"Yes","icon":"https://github.com/Phil-P-9000/Proto/blob/master/InvestmentCompany.PNG?raw=true"}
+,{"name":"RIJAK Trust","fullname":"RIJAK Investment Trust","type":"Trust","group":2,"position":2, "xalign":10, "displaysize":1,"holdingtype":"Beneficiary","jurisdiction":"Switzerland","riskrating":"High","riskcode":"RC11I","AML":"Yes","icon":"https://github.com/Phil-P-9000/Proto/blob/master/Trust.PNG?raw=true"
+, "item1":"Owns:", "item2":"V2AK Ltd - 100%", "item3":"HSBC Zurich - SFR $558,000", "item4":"HSBC Zurich - USD $285,500"}
+,{"name":"V2AK","fullname":"V2AK Ltd","type":"Company (Property)","group":3,"position":1, "xalign":4, "displaysize":1,"holdingtype":"Underlying company","jurisdiction":"France","riskrating":"Medium","riskcode":"RC8J","AML":"Yes","icon":"https://github.com/Phil-P-9000/Proto/blob/master/PropertyCompany.PNG?raw=true"
+,  "item1":"Owns:", "item2":"Rickard Properties - 65%", "item3":"Property - Main Street Paris - EUR $10.5M","item4":"Property - The Strand London - GBP $15M", "item5":"HSBC Paris - EUR $59K", "item6":"HSBC Paris - USD $58K"}
+,{"name":"SCI de Gorge","fullname":"SCI de Gorge","type":"Company","group":3,"position":2, "xalign":4, "displaysize":1,"holdingtype":"Shareholder","jurisdiction":"Switzerland","riskrating":"Medium","riskcode":"RC11N","AML":"Yes","icon":"https://github.com/Phil-P-9000/Proto/blob/master/InvestmentCompany.PNG?raw=true"}
+,{"name":"Private WC","fullname":"Private WC Ltd","type":"Company (Property)","group":3,"position":3, "xalign":4, "displaysize":1,"holdingtype":"Underlying company","jurisdiction":"Switzerland","riskrating":"Low","riskcode":"Other","AML":"Yes","icon":"https://github.com/Phil-P-9000/Proto/blob/master/PropertyCompany.PNG?raw=true"}
+,{"name":"Rickard","fullname":"Rickard Properties","type":"Company (Property)","group":4,"position":1, "xalign":2, "displaysize":1,"holdingtype":"Underlying company","jurisdiction":"UK","riskrating":"Low","riskcode":"RC8J","AML":"Yes","icon":"https://github.com/Phil-P-9000/Proto/blob/master/PropertyCompany.PNG?raw=true"}
+,{"name":"Bank Accounts","fullname":"Bank Accounts","type":"","group":5,"position":2, "xalign":14, "displaysize":0.6,"holdingtype":"","jurisdiction":"","riskrating":"","riskcode":"","AML":"","icon":"https://github.com/Phil-P-9000/Proto/blob/master/BankAccount.PNG?raw=true"}
+,{"name":"Documents","fullname":"Documents","type":"","group":5,"position":4, "xalign":14, "displaysize":0.6,"holdingtype":"","jurisdiction":"","riskrating":"","riskcode":"","AML":"","icon":"https://github.com/Phil-P-9000/Proto/blob/master/Document.PNG?raw=true"}
+,{"name":"Accounting","fullname":"Accounting","type":"","group":5,"position":6, "xalign":14, "displaysize":0.6,"holdingtype":"","jurisdiction":"","riskrating":"","riskcode":"","AML":"","icon":"https://github.com/Phil-P-9000/Proto/blob/master/Account.PNG?raw=true"}
+,{"name":"Investments","fullname":"Investments","type":"","group":5,"position":8, "xalign":14, "displaysize":0.6,"holdingtype":"","jurisdiction":"","riskrating":"","riskcode":"","AML":"","icon":"https://github.com/Phil-P-9000/Proto/blob/master/Investment.PNG?raw=true"}
+,{"name":"Properties","fullname":"Properties","type":"","group":5,"position":10, "xalign":14, "displaysize":0.6,"holdingtype":"","jurisdiction":"","riskrating":"","riskcode":"","AML":"","icon":"https://github.com/Phil-P-9000/Proto/blob/master/House.PNG?raw=true"}
+,{"name":"Other Assests","fullname":"Other Assests","type":"","group":5,"position":12, "xalign":14, "displaysize":0.6,"holdingtype":"","jurisdiction":"","riskrating":"","riskcode":"","AML":"","icon":"https://github.com/Phil-P-9000/Proto/blob/master/Other.PNG?raw=true"}]
+,"links":[
+{"source":0,"target":1,"id":1,"value":1}
+,{"source":0,"target":2,"id":2,"value":1}
+,{"source":0,"target":3,"id":3,"value":1}
+,{"source":0,"target":4,"id":4,"value":1}
+,{"source":4,"target":5,"id":5,"value":1}
+,{"source":0,"target":6,"id":6,"value":1}
+,{"source":1,"target":7,"id":7,"value":1}
+,{"source":7,"target":8,"id":8,"value":0.35}
+,{"source":5,"target":8,"id":9,"value":0.65}]}
