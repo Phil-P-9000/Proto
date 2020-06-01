@@ -1,0 +1,304 @@
+<div id="page">
+  <head>
+    <meta charset="UTF-8">
+    <title>LiveWealth360 by enSynergy</title>
+    <div id="header">
+      <img src="https://github.com/Phil-P-9000/Proto/blob/master/LiveWealthLogov1.26.png?raw=true" alt="LiveWealthLogov1.26.png" style="width:25%;height:auto;" class="center">
+      </div>
+   </head>
+  <div id="chart"></div> 
+  <div id="selectpanel">Holdings For:
+    <br>EAN Sloover</br></div>
+  <div id="picpanel"></div> 
+  <div id="infopanel"></div> 
+ 
+  <style>
+
+.link {stroke: #ccc;}
+  
+.node text {text-align:center;
+            font: 10px arial;}
+
+div {
+    display: block;
+}
+
+#page {
+    width: 100%;
+    height:100%;
+}
+
+#header {
+    float:top;
+    width: 100%;
+    height: 10%;
+}
+
+ #selectpanel {
+    float:left;
+    float:top;
+    width: 15%;
+    height: 10%;
+    text-align:center;
+    font: 16px arial;
+    font-weight: bold;
+}
+    
+ #picpanel {
+    float:left;
+    float:top;
+    width: 15%;
+    height: 10%;
+    text-align:center;
+}    
+    
+#infopanel {
+    float:left;
+    float:bottom;
+    width: 15%;
+    height: 70%;
+    
+}
+
+#chart {
+    float:right;
+    width: 84%;
+    height: 90%;
+    border-left: 2px solid lightgrey;
+}
+       
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;}
+  
+</style>
+  <body> 
+    
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+
+  var width   = 1920,
+      height  = 1080;
+
+ var svg = d3.select("#chart").append("svg")
+        .attr("viewBox", "0 0 1920 1080");
+
+  var force = d3.layout.force()
+
+  d3.json("https://raw.githubusercontent.com/Phil-P-9000/Proto/master/SampleDataCons33.json", function(error, json) {
+    if (error) throw error;
+
+  force
+      .nodes(json.nodes)
+      .links(json.links)
+      .start();
+ 
+  var link = svg.selectAll(".link")
+      .data(json.links)
+      .enter()
+      .append("line")
+      .attr("class", "link")
+      .style("stroke-width", function(d) { return (d.value)*5; });
+
+  var node = svg.selectAll(".node")
+      .data(json.nodes)
+      .enter().append("g")
+      .attr("class", "node")
+//      .call(force.drag)
+  
+  const linkLabels = svg.selectAll(".link-label")
+    .data(json.links)
+    .enter().append("text")
+    .attr({
+        "class": "link-label",
+        "text-anchor": "middle",
+        "font-family": "arial"})
+    .style("font-size", "16px")
+    .text(d => (d.value*100)+"%");
+      
+  node.append("title")
+    .html(function(d) {return d.fullname + " (" + d.type + ")"}).attr({"text-anchor": "left","font-family": "arial"}).style("font-size", "32px").attr("dy", "1em").attr("dx", 5);
+  
+  node.append("circle")
+      .attr("r", function(d) { return d.displaysize *50 })
+      .style("fill", "#69b3a2")
+  
+  node.append("circle")
+      .attr("r", function(d) { return d.displaysize *48 })
+      .style("fill", "#FFFFFF") 
+  
+  node.append("image")
+      .attr("xlink:href", function(d) {return d.icon;})
+      .attr("width", function(d) { return d.displaysize *60 })
+      .attr("height", function(d) { return d.displaysize *60 })
+      .attr("x", function(d) {if (d.displaysize != 1) { return -18 }
+                              else {return -30};})
+      .attr("y", function(d) {if (d.displaysize != 1) { return -18 }
+                              else {return -35};});
+
+  node.append("text")
+      .attr("dx", 0)
+      .attr("dy", function(d) {if (d.displaysize != 1) { return "4em" }
+                              else {return "3.5em"};})
+      .attr("text-anchor", "middle")
+      .text(function(d) { return d.name });
+    
+  document.addEventListener('mousedown', function (event) {
+    if (event.detail > 1) {
+      event.preventDefault();
+    }
+  }, false);
+   
+// Dropdown Panel Selection Box
+   
+//      d3.select("#selectButton")
+//      .selectAll('myOptions')
+//     	.data(json)
+//      .enter()
+//    	.append('option')
+//      .text(function (d) { return d; })
+//      .attr("value", function (d) { return d; })
+     
+   
+// Pic Panel Image
+    
+    document.getElementById('picpanel')
+            .innerHTML = '<img width="70%" height=auto src="https://github.com/Phil-P-9000/Proto/blob/master/Sloover_1.png?raw=true">';
+    
+    // Click Interactivity
+    var tip; 
+    var infotip = d3.select("#infopanel").append("svg")
+       .attr("viewBox", "-35 -25 300 800");
+    
+  node.on("click", function(){
+  if (tip) tip.remove();
+  d3.selectAll("circle").remove()
+    
+  node.append("circle")
+      .attr("r", function(d) { return d.displaysize *50 })
+      .style("fill", "#69b3a2")
+  
+  node.append("circle")
+      .attr("r", function(d) { return d.displaysize *48 })
+      .style("fill", "#FFFFFF")
+    
+  node.append("image")
+      .attr("xlink:href", function(d) {return d.icon;})
+      .attr("width", function(d) { return d.displaysize *60 })
+      .attr("height", function(d) { return d.displaysize *60 })
+      .attr("x", function(d) {if (d.displaysize != 1) { return -18 }
+                              else {return -30};})
+      .attr("y", function(d) {if (d.displaysize != 1) { return -18 }
+                              else {return -35};});
+   
+  node.append("text")
+      .attr("dx", 0)
+      .attr("dy", "3.5em")
+      .attr("text-anchor", "middle")
+      .text(function(d) {if (d.group != 5) { return d.name };});
+     
+    });
+    
+   node.on("dblclick", function(d){
+   d3.event.stopPropagation();
+   if (tip) tip.remove();
+
+
+        d3.select(this).select("circle").transition()
+        .duration(750)
+        .attr("r", function(d) { return d.displaysize *55 })
+        .style("fill", "grey");
+             
+   tip  = infotip.append("g");
+   
+   var rect = tip.append("rect")
+      .style("fill", "lightgrey")
+      .style("stroke", "grey")
+      .classed("infobox",1);
+      
+   tip.append("text")
+      .text("Entity Details").attr({"text-anchor": "left","font-family": "arial"}).style("font-size", "32px").attr("dy", "1em").attr("dx", 5);
+      
+   tip.append("text")
+      .text("Name: " + d.fullname).attr({"text-anchor": "left","font-family": "arial"}).style("font-size", "16px").attr("dy", "4em").attr("dx", 5);
+     
+   tip.append("text")
+      .text(d.type).attr({"text-anchor": "left","font-family": "arial"}).style("font-size", "16px").attr("dy", "6em").attr("dx", 5);
+     
+    tip.append("text")
+      .text(d.holdingtype).attr({"text-anchor": "left","font-family": "arial"}).style("font-size", "16px").attr("dy", "8em").attr("dx", 5);
+     
+    tip.append("text")
+      .text(d.jurisdiction).attr({"text-anchor": "left","font-family": "arial"}).style("font-size", "16px").attr("dy", "10em").attr("dx", 5);
+     
+    tip.append("text")
+      .text(d.riskrating).attr({"text-anchor": "left","font-family": "arial"}).style("font-size", "16px").attr("dy", "12em").attr("dx", 5); 
+     
+    tip.append("text")
+      .text(d.riskcode).attr({"text-anchor": "left","font-family": "arial"}).style("font-size", "16px").attr("dy", "14em").attr("dx", 5); 
+     
+    tip.append("text")
+      .text(d.AML).attr({"text-anchor": "left","font-family": "arial"}).style("font-size", "16px").attr("dy", "16em").attr("dx", 5);
+
+    tip.append("text")
+      .text(d.item1).attr({"text-anchor": "left","font-family": "arial"}).style("font-size", "16px").style("font-weight", "bold").attr("dy", "18em").attr("dx", 5); 
+     
+    tip.append("text")
+      .text(d.item2).attr({"text-anchor": "left","font-family": "arial"}).style("font-size", "16px").attr("dy", "20em").attr("dx", 5);
+     
+    tip.append("text")
+      .text(d.item3).attr({"text-anchor": "left","font-family": "arial"}).style("font-size", "16px").attr("dy", "22em").attr("dx", 5);
+     
+    tip.append("text")
+      .text(d.item4).attr({"text-anchor": "left","font-family": "arial"}).style("font-size", "16px").attr("dy", "24em").attr("dx", 5);
+     
+    tip.append("text")
+      .text(d.item5).attr({"text-anchor": "left","font-family": "arial"}).style("font-size", "16px").attr("dy", "26em").attr("dx", 5);
+     
+    tip.append("text")
+      .text(d.item6).attr({"text-anchor": "left","font-family": "arial"}).style("font-size", "16px").attr("dy", "28em").attr("dx", 5);
+     
+    tip.append("text")
+      .text(d.item7).attr({"text-anchor": "left","font-family": "arial"}).style("font-size", "16px").attr("dy", "30em").attr("dx", 5);
+     
+    tip.append("text")
+      .text(d.item8).attr({"text-anchor": "left","font-family": "arial"}).style("font-size", "16px").attr("dy", "32em").attr("dx", 5);
+     
+    tip.append("text")
+      .text(d.item9).attr({"text-anchor": "left","font-family": "arial"}).style("font-size", "16px").attr("dy", "34em").attr("dx", 5);
+     
+    tip.append("text")
+      .text(d.item10).attr({"text-anchor": "left","font-family": "arial"}).style("font-size", "16px").attr("dy", "36em").attr("dx", 5);
+     
+    tip.append("text")
+      .text(d.item11).attr({"text-anchor": "left","font-family": "arial"}).style("font-size", "16px").attr("dy", "38em").attr("dx", 5);
+              
+    var bbox = tip.node().getBBox();
+    rect.attr("width", bbox.width + 20)
+        .attr("height", bbox.height + 20) 
+
+
+        });
+  
+  force.on("tick", function(e) {
+    link
+        .attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+    
+    linkLabels
+        .attr("x", d => ((d.source.x + d.target.x) / 2))
+        .attr("y", d => ((d.source.y + d.target.y) / 2));
+
+    node
+        .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+        .attr("cx", function(d) { return d.x = Math.max((width/d.xalign)*d.position, Math.min(50, d.x)); })   
+        .attr("cy", function(d) { return d.y = Math.max((125*d.group), Math.min(100, d.y)); });
+  });
+});
+
+</script>
+</html>
